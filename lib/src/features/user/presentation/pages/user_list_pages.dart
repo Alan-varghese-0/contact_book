@@ -2,6 +2,7 @@ import 'package:contact_book/src/features/user/domain/repositories/user_reposito
 import 'package:contact_book/src/features/user/presentation/bloc/user_bloc.dart';
 import 'package:contact_book/src/features/user/presentation/bloc/user_event.dart';
 import 'package:contact_book/src/features/user/presentation/bloc/user_state.dart';
+import 'package:contact_book/src/features/user/presentation/pages/add_user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,6 +38,15 @@ class UserListPages extends StatelessWidget {
             }
             return const SizedBox();
           },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddUserPage()),
+            );
+          },
+          child: Icon(Icons.add),
         ),
       ),
     );
