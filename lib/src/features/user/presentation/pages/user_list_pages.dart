@@ -5,6 +5,7 @@ import 'package:contact_book/src/features/user/presentation/bloc/user_state.dart
 import 'package:contact_book/src/features/user/presentation/pages/add_user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:io';
 
 class UserListPages extends StatelessWidget {
   final UserRepository repo;
@@ -84,6 +85,15 @@ class UserListPages extends StatelessWidget {
                             itemBuilder: (context, index) {
                               final user = state.user[index];
                               return ListTile(
+                                leading: user.imagepath.isEmpty
+                                    ? const CircleAvatar(
+                                        child: Icon(Icons.person),
+                                      )
+                                    : CircleAvatar(
+                                        backgroundImage: FileImage(
+                                          File(user.imagepath),
+                                        ),
+                                      ),
                                 title: Text(user.name),
                                 subtitle: Text(user.phone),
                               );

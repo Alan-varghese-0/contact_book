@@ -2,6 +2,8 @@ import 'package:contact_book/src/features/user/presentation/bloc/user_bloc.dart'
 import 'package:contact_book/src/features/user/presentation/bloc/user_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class AddUserPage extends StatefulWidget {
   const AddUserPage({super.key});
@@ -11,9 +13,20 @@ class AddUserPage extends StatefulWidget {
 }
 
 class _AddUserPageState extends State<AddUserPage> {
+  File? imagefile;
   final namecontroller = TextEditingController();
   final phonecontroller = TextEditingController();
   final agecontroller = TextEditingController();
+
+  Future pickImage() async {
+    final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (picked != null) {
+      setState(() {
+        imagefile = File(picked.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +35,18 @@ class _AddUserPageState extends State<AddUserPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            GestureDetector(
+              onTap: pickImage,
+              child: CircleAvatar(
+                radius: 45,
+                backgroundImage: imagefile != null
+                    ? FileImage(imagefile!)
+                    : null,
+                child: imagefile == null
+                    ? const Icon(Icons.add_a_photo, size: 30)
+                    : null,
+              ),
+            ),
             TextField(
               controller: namecontroller,
               decoration: InputDecoration(labelText: 'Name'),
@@ -44,7 +69,7 @@ class _AddUserPageState extends State<AddUserPage> {
                     name: namecontroller.text,
                     phone: phonecontroller.text,
                     age: int.parse(agecontroller.text),
-                    imagepath: '',
+                    imagepath: imagefile?.path ?? '',
                   ),
                 );
                 Navigator.pop(context);
