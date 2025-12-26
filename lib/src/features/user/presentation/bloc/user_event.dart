@@ -14,3 +14,16 @@ class addUser extends UserEvent {
     required this.imagepath,
   });
 }
+
+class searchUser extends UserEvent {
+  final String query;
+  searchUser({required this.query});
+}
+
+class sortolder extends UserEvent {}
+
+class sortyounger extends UserEvent {}
+
+class sortreset extends UserEvent {}
+
+class loadmore extends UserEvent {}
