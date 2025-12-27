@@ -15,6 +15,23 @@ class MyApp extends StatelessWidget {
       title: "user App",
       debugShowCheckedModeBanner: false,
       home: LoginPage(repo: repo),
+      theme: ThemeData(
+        primaryColor: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          elevation: 0,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            minimumSize: const Size.fromHeight(45),
+          ),
+        ),
+      ),
     );
   }
 }
