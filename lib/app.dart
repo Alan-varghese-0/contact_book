@@ -1,7 +1,7 @@
 import 'package:contact_book/src/core/services/hive_service.dart';
 import 'package:contact_book/src/features/user/data/datasources/local_user_datasource.dart';
 import 'package:contact_book/src/features/user/data/repositories/user_repo_impl.dart';
-import 'package:contact_book/src/features/user/presentation/pages/user_list_pages.dart';
+import 'package:contact_book/src/features/user/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "user App",
       debugShowCheckedModeBanner: false,
-      home: UserListPages(repo: repo),
+      home: LoginPage(repo: repo),
     );
   }
 }
